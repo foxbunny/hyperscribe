@@ -17,7 +17,17 @@ system.
 
 ## Installation
 
-TODO
+Install from the NPM repository with NPM:
+
+```bash
+npm install --save-dev hyperscribe
+```
+
+or with Yarn:
+
+```bash
+yarn add --dev hyperscribe
+```
 
 ## Quick tour
 
