@@ -20,13 +20,13 @@ system.
 Install from the NPM repository with NPM:
 
 ```bash
-npm install --save-dev hyperscribe
+npm install hyperscribe
 ```
 
 or with Yarn:
 
 ```bash
-yarn add --dev hyperscribe
+yarn add hyperscribe
 ```
 
 ## Quick tour
