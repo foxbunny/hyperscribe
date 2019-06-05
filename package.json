@@ -1,6 +1,6 @@
 {
   "name": "hyperscribe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Extensible DOM node creation library for JavaScript programmers",
   "main": "dist/hyperscribe.js",
   "module": "dist/hyperscribe.mjs",
