@@ -1,6 +1,6 @@
 {
   "name": "hyperscribe",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Extensible DOM node creation library for JavaScript programmers",
   "main": "dist/hyperscribe.js",
   "module": "dist/hyperscribe.mjs",
@@ -11,7 +11,7 @@
   "scripts": {
     "test": "jest",
     "build": "rollup -c",
-    "preversion": "yarn build"
+    "prepublish": "yarn build"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -24,5 +24,8 @@
   },
   "dependencies": {
     "core-js": "2"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
