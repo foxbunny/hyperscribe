@@ -270,13 +270,15 @@ Elemnts can have child nodes. Passing one of the following as an argument to
 
 - `Element` object.
 - `Comment` object.
+- `Text` object.
 - Objects with `toElement()` method.
 - Objects with `toString()` method.
 - `undefined` and `null`.
 - Any types not explictly on this list.
 - An array is treated as an array of the above, recursively.
 
-The `Element` and `Comment` objects are added to the parent node directly.
+The `Element`, `Comment` and `Text` objects are added to the parent node
+directly.
 
 Objects that have an `toElement()` method will be expected to return an
 `Element` or a `Comment` object and that will be appended to the parent node.

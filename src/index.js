@@ -88,6 +88,7 @@ export function addProps(props, el) {
  *
  * - `Element` object.
  * - `Comment` object.
+ * - `Text` object.
  * - An array of children (recursive)
  * - `undefined` and `null` are rendered as HTML comments
  * - Any other JavaScript value (all coerced into string and added as text
@@ -112,7 +113,11 @@ export function addChildren(children, el) {
       addChildren(child, el);
     });
   }
-  else if (children instanceof Element || children instanceof Comment) {
+  else if (
+    children instanceof Element ||
+    children instanceof Comment ||
+    children instanceof Text
+  ) {
     el.appendChild(children);
   }
   else if (children == null) {

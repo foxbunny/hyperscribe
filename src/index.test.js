@@ -113,6 +113,14 @@ describe('addChildren', function () {
     expect(n.innerHTML).toBe('<!--test me-->');
   });
 
+  test('add Text node', function () {
+    const n = $('div');
+    const c = document.createTextNode('test me');
+    addChildren(c, n);
+    expect(c.parentNode).toBe(n);
+    expect(n.innerHTML).toBe('test me');
+  });
+
   test('add elementable object', function () {
     const n = $('div');
     const o = {
