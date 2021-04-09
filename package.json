@@ -1,6 +1,6 @@
 {
   "name": "hyperscribe",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Extensible DOM node creation library for JavaScript programmers",
   "main": "dist/index.js",
   "module": "src/index.js",
