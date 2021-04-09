@@ -1,12 +1,6 @@
 module.exports = {
   presets: [
-    [
-      '@babel/env',
-      {
-        useBuiltIns: 'usage',
-        corejs: 2,
-      },
-    ],
+    ['@babel/env'],
   ],
   plugins: [
     '@babel/plugin-transform-modules-umd'
