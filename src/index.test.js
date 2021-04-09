@@ -1,33 +1,33 @@
 import {createElement as $, addProps, addChildren} from './index';
 
-describe('addProps', function () {
+describe('addProps', () => {
 
-  test('add a property', function () {
+  test('add a property', () => {
     const n = $('main');
     addProps({id: 'main'}, n);
     expect(n.id).toBe('main');
   });
 
-  test('add multiple properties', function () {
+  test('add multiple properties', () => {
     const n = $('a');
     addProps({href: 'http://www.example.com/', target: '_blank'}, n);
     expect(n.href).toBe('http://www.example.com/');
     expect(n.target).toBe('_blank');
   });
 
-  test('class property special case', function () {
+  test('class property special case', () => {
     const n = $('div');
     addProps({class: 'middle'}, n);
     expect(n.className).toBe('middle');
   });
 
-  test('class property accepts arrays', function () {
+  test('class property accepts arrays', () => {
     const n  = $('div');
     addProps({class: ['middle', 'left']}, n);
     expect(n.className).toBe('middle left');
   });
 
-  test('class property is coerced into string', function () {
+  test('class property is coerced into string', () => {
     const n = $('span');
     addProps({class: false}, n);
     expect(n.className).toBe('false');
@@ -42,52 +42,52 @@ describe('addProps', function () {
     }
   );
 
-  test('for property is an alias for htmlFor', function () {
+  test('for property is an alias for htmlFor', () => {
     const n = $('span');
     addProps({for: 'me'}, n);
     expect(n.htmlFor).toBe('me');
   });
 
-  test('tabindex is an alias for tabIndex', function () {
+  test('tabindex is an alias for tabIndex', () => {
     const n = $('span');
     addProps({tabindex: 2}, n);
     expect(n.tabIndex).toBe(2);
   });
 
-  test('create with style property', function () {
+  test('create with style property', () => {
     const n = $('span');
     addProps({style: {width: '200px'}}, n);
     expect(n.style.width).toBe('200px');
   });
 
-  test('create with multiple style rules', function () {
+  test('create with multiple style rules', () => {
     const n = $('span');
     addProps({style: {width: '200px', height: '40px'}}, n);
     expect(n.style.width).toBe('200px');
     expect(n.style.height).toBe('40px');
   });
 
-  test('data property', function () {
+  test('data property', () => {
     const n = $('span');
     addProps({dataset: {foo: 'bar'}}, n);
     expect(n.dataset.foo).toBe('bar');
   });
 
-  test('multiple data properties', function () {
+  test('multiple data properties', () => {
     const n = $('span');
     addProps({dataset: {foo: 'bar', bar: 'baz'}}, n);
     expect(n.dataset.foo).toBe('bar');
     expect(n.dataset.bar).toBe('baz');
   });
 
-  test('add ARIA role', function () {
+  test('add ARIA role', () => {
     const n = $('span');
     addProps({role: 'button'}, n);
     expect(n.role).toBeUndefined();
     expect(n.getAttribute('role')).toBe('button');
   });
 
-  test('add ARIA attribute', function () {
+  test('add ARIA attribute', () => {
     const n = $('span');
     addProps({aria: {valuenow: 12}}, n);
     expect(n.aria).toBeUndefined();
@@ -96,16 +96,16 @@ describe('addProps', function () {
 
 });
 
-describe('addChildren', function () {
+describe('addChildren', () => {
 
-  test('add DOM node', function () {
+  test('add DOM node', () => {
     const n = $('div');
     const c = $('span');
     addChildren(c, n);
     expect(c.parentNode).toBe(n);
   });
 
-  test('add Comment node', function () {
+  test('add Comment node', () => {
     const n = $('div');
     const c = document.createComment('test me');
     addChildren(c, n);
@@ -113,7 +113,7 @@ describe('addChildren', function () {
     expect(n.innerHTML).toBe('<!--test me-->');
   });
 
-  test('add Text node', function () {
+  test('add Text node', () => {
     const n = $('div');
     const c = document.createTextNode('test me');
     addChildren(c, n);
@@ -121,10 +121,10 @@ describe('addChildren', function () {
     expect(n.innerHTML).toBe('test me');
   });
 
-  test('add elementable object', function () {
+  test('add elementable object', () => {
     const n = $('div');
     const o = {
-      toElement: function () {
+      toElement: () => {
         return $('span');
       },
     };
@@ -132,10 +132,10 @@ describe('addChildren', function () {
     expect(n.firstChild).toBeInstanceOf(HTMLSpanElement);
   });
 
-  test('add stringable element', function () {
+  test('add stringable element', () => {
     const n = $('div');
     const o = {
-      toString: function () {
+      toString: () => {
         return 'Hello, test!';
       },
     };
@@ -143,13 +143,13 @@ describe('addChildren', function () {
     expect(n.firstChild).toEqual(document.createTextNode('Hello, test!'));
   });
 
-  test('add text', function () {
+  test('add text', () => {
     const n = $('div');
     addChildren('Hello, test!', n);
     expect(n.firstChild).toEqual(document.createTextNode('Hello, test!'));
   });
 
-  test('add multiple DOM nodes', function () {
+  test('add multiple DOM nodes', () => {
     const n = $('div');
     const c = [$('span'), $('span')];
     addChildren(c, n);
@@ -158,7 +158,7 @@ describe('addChildren', function () {
     });
   });
 
-  test('add mixed DOM nodes and text', function () {
+  test('add mixed DOM nodes and text', () => {
     const n = $('div');
     const c = [$('span'), 'span'];
     addChildren(c, n);
@@ -177,14 +177,14 @@ describe('addChildren', function () {
     }
   )
 
-  test('add mixed DOM ndodes and undefined', function () {
+  test('add mixed DOM ndodes and undefined', () => {
     const n = $('div');
     const c = [$('span'), undefined];
     addChildren(c, n);
     expect(n.lastChild).toEqual(document.createComment('undefined'));
   });
 
-  test('beforeappend hook', function () {
+  test('beforeappend hook', () => {
     const n = $('div');
     const c = $('span');
     c.onbeforeappend = jest.fn(function (el) {
@@ -194,7 +194,7 @@ describe('addChildren', function () {
     expect(c.onbeforeappend).toHaveBeenCalledWith(n);
   });
 
-  test('onappend hook', function () {
+  test('onappend hook', () => {
     const n = $('div');
     const c = $('span');
     c.onappend = jest.fn(function (el) {
@@ -206,7 +206,7 @@ describe('addChildren', function () {
 
 });
 
-describe('createElement', function () {
+describe('createElement', () => {
 
   test.each([
     ['div', HTMLDivElement],
@@ -233,17 +233,17 @@ describe('createElement', function () {
     expect(hook2).toHaveBeenCalledWith(document.createElement('div'));
   });
 
-  test('add props using an object', function () {
+  test('add props using an object', () => {
     const n = $('div', {id: 'main'});
     expect(n.id).toEqual('main');
   });
 
-  test('add child node', function () {
+  test('add child node', () => {
     const n = $('div', $('span'));
     expect(n.childNodes.length).toBe(1);
   });
 
-  test('add mixed', function () {
+  test('add mixed', () => {
     const hook = jest.fn();
     const n = $('div', hook, 'Hello, world!', {id: 'side'}, $('span'));
     expect(n.id).toBe('side');
